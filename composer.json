@@ -1,0 +1,23 @@
+{
+    "name": "ablunier/laravel-database",
+    "description": "",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian P. Blunier",
+            "email": "adrian@blunier.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*",
+        "illuminate/database": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ANavallaSuiza\\Laravel\\Database\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
