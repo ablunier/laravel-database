@@ -20,7 +20,9 @@ class ModelManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', 'ANavallaSuiza\Laravel\Database\Manager\Eloquent\ModelManager');
+        $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', function ($app) {
+            return new ModelManager($app);
+        });
     }
 
     /**

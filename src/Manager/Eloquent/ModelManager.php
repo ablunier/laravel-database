@@ -5,9 +5,23 @@ use ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager as ModelManage
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCustomRepository;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use Illuminate\Container\Container as App;
 
 class ModelManager implements ModelManagerContract
 {
+     /**
+     * @var App
+     */
+    private $app;
+
+    /**
+     * @param App $app
+     */
+    public function __construct(App $app)
+    {
+        $this->app = $app;
+    }
+
     /**
      * Get Eloquent Model instance
      *
@@ -17,7 +31,7 @@ class ModelManager implements ModelManagerContract
      */
     protected function instantiateModel($modelName)
     {
-        $modelInstance = App::make($modelName);
+        $modelInstance = $this->app->make($modelName);
 
         if (! $modelInstance instanceof EloquentModel) {
             $message = "Target [$modelName] is not an Illuminate\Database\Eloquent\Model instance.";
@@ -38,7 +52,7 @@ class ModelManager implements ModelManagerContract
         $args = ['model' => $modelInstance];
 
         if ($modelInstance instanceof HasCustomRepository) {
-            $repository = App::make($modelInstance->repository(), $args);
+            $repository = $this->app->make($modelInstance->repository(), $args);
 
             if (! $repository instanceof Repository) {
                 $message = "The [$modelName] custom repository must extend ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository.";
@@ -48,7 +62,7 @@ class ModelManager implements ModelManagerContract
 
             return $repository;
         } else {
-            return App::make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $args);
+            return $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $args);
         }
     }
 
