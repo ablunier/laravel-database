@@ -30,6 +30,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
     public function __construct(EloquentModel $model)
     {
         $this->model = $model;
+        $this->criteria = new Collection;
     }
 
     /**
