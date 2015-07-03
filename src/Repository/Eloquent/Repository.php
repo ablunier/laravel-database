@@ -27,9 +27,8 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param App $app
      */
-    public function __construct(App $app, EloquentModel $model)
+    public function __construct(EloquentModel $model)
     {
-        $this->app = $app;
         $this->model = $model;
     }
 
