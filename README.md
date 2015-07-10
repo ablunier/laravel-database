@@ -81,3 +81,11 @@ class ExampleController extends Controller
     }
 }
 ```
+
+## Documentation
+
+Visit the [wiki](https://github.com/ablunier/laravel-database/wiki) for more information.
+
+## License
+
+This software is published under the MIT License
