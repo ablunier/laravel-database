@@ -55,7 +55,7 @@ class Cache implements CacheContract
             return call_user_func_array(array($this->repository, $method), $params);
         } else {
             if (empty($this->key)) {
-                $this->cacheKey($this->generateKey($method));
+                $this->cacheKey($this->generateKey($method, $params));
             }
             $key = $this->key;
             unset($this->key);
@@ -75,11 +75,11 @@ class Cache implements CacheContract
     /**
      *
      */
-    protected function generateKey($method)
+    protected function generateKey($method, $params)
     {
         $className = (new ReflectionClass($this->repository->getModel()))->getShortName();
 
-        return strtolower($className).'.'.strtolower($method);
+        return strtolower($className).'.'.strtolower($method).'.'.md5(serialize($params));
     }
 
     /**
