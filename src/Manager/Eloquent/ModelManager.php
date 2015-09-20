@@ -3,6 +3,7 @@ namespace ANavallaSuiza\Laravel\Database\Manager\Eloquent;
 
 use ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager as ModelManagerContract;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCustomRepository;
+use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCache;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Container\Container as App;
@@ -59,11 +60,18 @@ class ModelManager implements ModelManagerContract
 
                 throw new \Exception($message);
             }
-
-            return $repository;
         } else {
-            return $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $args);
+            $repository = $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $args);
         }
+
+        if ($modelInstance instanceof HasCache && $modelInstance->cache() === true) {
+            return $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache', [
+                'repository' => $repository,
+                'cache'      => $this->app['cache.store']
+            ]);
+        }
+
+        return $repository;
     }
 
     /**

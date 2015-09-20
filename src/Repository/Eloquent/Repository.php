@@ -37,6 +37,14 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @return mixed
      */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * @return mixed
+     */
     public function all(array $with = array())
     {
         $this->addWithCriteria($with);

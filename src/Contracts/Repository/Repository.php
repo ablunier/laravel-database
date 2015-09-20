@@ -6,6 +6,11 @@ interface Repository
     /**
      * @return mixed
      */
+    public function getModel();
+
+    /**
+     * @return mixed
+     */
     public function all(array $with = array());
 
     /**
