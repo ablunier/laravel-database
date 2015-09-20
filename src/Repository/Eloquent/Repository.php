@@ -215,7 +215,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     protected function refresh()
     {
-        $this->model = $this->model->newInstance();
+        $this->model = $this->model->fresh();
         $this->criteria = new Collection;
     }
 
