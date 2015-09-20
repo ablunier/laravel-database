@@ -4,6 +4,7 @@ namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\CriteriaPerformer;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria;
+use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Collection;
 
@@ -36,8 +37,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @return mixed
      */
-    public function all()
+    public function all(array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->get();
@@ -47,8 +49,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param int $perPage
      * @return mixed
      */
-    public function paginate($perPage = 15)
+    public function paginate($perPage = 15, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->paginate($perPage);
@@ -87,8 +90,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param $id
      * @return mixed
      */
-    public function find($id)
+    public function find($id, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->find($id);
@@ -98,8 +102,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param $id
      * @return mixed|Exception
      */
-    public function findOrFail($id)
+    public function findOrFail($id, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->findOrFail($id);
@@ -111,8 +116,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param array $columns
      * @return mixed
      */
-    public function findBy($field, $value)
+    public function findBy($field, $value, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->where($field, '=', $value)->first();
@@ -124,8 +130,9 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param array $columns
      * @return mixed
      */
-    public function findByOrFail($field, $value)
+    public function findByOrFail($field, $value, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->where($field, '=', $value)->firstOrFail();
@@ -136,11 +143,23 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param $value
      * @return mixed
      */
-    public function findAllBy($field, $value)
+    public function findAllBy($field, $value, array $with = array())
     {
+        $this->addWithCriteria($with);
         $this->applyCriteria();
 
         return $this->model->where($field, '=', $value)->get();
+    }
+
+    /**
+     * @param array $with
+     * @return void
+     */
+    protected function addWithCriteria(array $with = array())
+    {
+        if (count($with) > 0) {
+            $this->pushCriteria(new WithCriteria($with));
+        }
     }
 
     /**
