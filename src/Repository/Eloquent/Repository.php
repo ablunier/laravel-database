@@ -50,7 +50,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->get();
+        $result = $this->model->get();
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -62,7 +66,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->paginate($perPage);
+        $result = $this->model->paginate($perPage);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -71,7 +79,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     public function create(array $data)
     {
-        return $this->model->create($data);
+        $result = $this->model->create($data);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -82,7 +94,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     public function update(array $data, $id, $field = "id")
     {
-        return $this->model->where($field, '=', $id)->update($data);
+        $result = $this->model->where($field, '=', $id)->update($data);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -91,7 +107,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     public function delete($id)
     {
-        return $this->model->destroy($id);
+        $result = $this->model->destroy($id);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -103,7 +123,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->find($id);
+        $result = $this->model->find($id);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -115,7 +139,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->findOrFail($id);
+        $result = $this->model->findOrFail($id);
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -129,7 +157,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->where($field, '=', $value)->first();
+        $result = $this->model->where($field, '=', $value)->first();
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -143,7 +175,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->where($field, '=', $value)->firstOrFail();
+        $result = $this->model->where($field, '=', $value)->firstOrFail();
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -156,7 +192,11 @@ class Repository implements RepositoryContract, CriteriaPerformer
         $this->addWithCriteria($with);
         $this->applyCriteria();
 
-        return $this->model->where($field, '=', $value)->get();
+        $result = $this->model->where($field, '=', $value)->get();
+
+        $this->refresh();
+
+        return $result;
     }
 
     /**
@@ -168,6 +208,15 @@ class Repository implements RepositoryContract, CriteriaPerformer
         if (count($with) > 0) {
             $this->pushCriteria(new WithCriteria($with));
         }
+    }
+
+    /**
+     *
+     */
+    protected function refresh()
+    {
+        $this->model = $this->model->newInstance();
+        $this->criteria = new Collection;
     }
 
     /**
@@ -207,6 +256,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
     public function pushCriteria(Criteria $criteria)
     {
         $this->criteria->push($criteria);
+
         return $this;
     }
 
