@@ -1,7 +1,8 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Repository\Criteria;
+namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria;
 
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria;
+use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository;
 
 class WithCriteria implements Criteria
 {
@@ -14,6 +15,6 @@ class WithCriteria implements Criteria
 
     public function apply($model, Repository $repository)
     {
-        $this->model->with($this->with);
+        return $model->with($this->with);
     }
 }
