@@ -6,19 +6,19 @@ use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCustomRepository;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCache;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
-use Illuminate\Container\Container as App;
+use Illuminate\Contracts\Foundation\Application;
 
 class ModelManager implements ModelManagerContract
 {
      /**
-     * @var App
+     * @var Application
      */
     private $app;
 
     /**
-     * @param App $app
+     * @param Application $app
      */
-    public function __construct(App $app)
+    public function __construct(Application $app)
     {
         $this->app = $app;
     }
@@ -79,6 +79,12 @@ class ModelManager implements ModelManagerContract
      */
     public function getAbstractionLayer($modelName)
     {
+        $modelInstance = $this->instantiateModel($modelName);
 
+        $args = ['model' => $modelInstance];
+
+        $dbal = $this->app->make('ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $args);
+
+        return $dbal;
     }
 }
