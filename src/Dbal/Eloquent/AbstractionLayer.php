@@ -26,4 +26,30 @@ class AbstractionLayer implements AbstractionLayerContract
 
         return $connection->getDoctrineSchemaManager();
     }
+
+    public function getTableColumns()
+    {
+        $sm = $this->getSchemaManager();
+
+        $columns = $sm->listTableColumns($this->model->getTable());
+
+        return $columns;
+    }
+
+    public function getModelAttributes()
+    {
+        $columns = $this->getTableColumns($this->model);
+
+        $attributes = [];
+        foreach ($columns as $fieldName => $field) {
+            $attributes[] = $fieldName;
+        }
+
+        return $attributes;
+    }
+
+    public function getRelations()
+    {
+
+    }
 }
