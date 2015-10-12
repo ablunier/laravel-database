@@ -30,7 +30,7 @@ class ModelManager implements ModelManagerContract
      *
      * @return Illuminate\Database\Eloquent\Model
      */
-    protected function instantiateModel($modelName)
+    public function getModelInstance($modelName)
     {
         $modelInstance = $this->app->make($modelName);
 
@@ -48,7 +48,7 @@ class ModelManager implements ModelManagerContract
      */
     public function getRepository($modelName)
     {
-        $modelInstance = $this->instantiateModel($modelName);
+        $modelInstance = $this->getModelInstance($modelName);
 
         $args = ['model' => $modelInstance];
 
@@ -79,7 +79,7 @@ class ModelManager implements ModelManagerContract
      */
     public function getAbstractionLayer($modelName)
     {
-        $modelInstance = $this->instantiateModel($modelName);
+        $modelInstance = $this->getModelInstance($modelName);
 
         $args = ['model' => $modelInstance];
 
