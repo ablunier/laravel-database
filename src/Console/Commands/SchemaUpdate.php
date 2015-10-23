@@ -2,7 +2,7 @@
 namespace ANavallaSuiza\Laravel\Database\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Inspiring;
+use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel as Console;
 use Schema;
