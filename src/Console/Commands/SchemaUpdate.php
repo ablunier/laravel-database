@@ -81,10 +81,14 @@ class SchemaUpdate extends Command
 
         $diffStatements = $schemaDiff->toSql($this->getDatabasePlatform());
 
-        $this->info('Statements that will be executed:'.PHP_EOL);
+        if (count($diffStatements) > 0) {
+            $this->info('Statements that will be executed:'.PHP_EOL);
 
-        foreach ($diffStatements as $statement) {
-            $this->info($statement);
+            foreach ($diffStatements as $statement) {
+                $this->info($statement);
+            }
+        } else {
+            $this->info('The schema is up to date with the migrations'.PHP_EOL);
         }
 
         if ($this->option('force')) {
