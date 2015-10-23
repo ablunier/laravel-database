@@ -18,7 +18,14 @@ class SchemaUpdate extends Command
      *
      * @var string
      */
-    protected $signature = 'db:schema-update {--force : Force execute queries}';
+    //protected $signature = 'db:schema-update {--force : Force execute queries}';
+
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $name = 'db:schema-update';
 
     /**
      * The console command description.
@@ -87,6 +94,18 @@ class SchemaUpdate extends Command
         } else {
             $this->info('To execute diff statements use the --force option');
         }
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return array(
+            array('force', null, InputOption::VALUE_NONE, 'Force import the data.', null)
+        );
     }
 
     protected function createInMemoryDatabase()
