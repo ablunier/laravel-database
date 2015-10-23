@@ -88,7 +88,7 @@ class SchemaUpdate extends Command
                 $this->info($statement);
             }
         } else {
-            $this->info('The schema is up to date with the migrations'.PHP_EOL);
+            $this->info('The schema is up to date with the migrations.'.PHP_EOL);
         }
 
         if ($this->option('force')) {
@@ -98,7 +98,7 @@ class SchemaUpdate extends Command
                 }
             });
         } else {
-            $this->info('To apply diff statements use the --force option');
+            $this->info(PHP_EOL.'To apply diff statements use the --force option');
         }
     }
 
@@ -116,6 +116,8 @@ class SchemaUpdate extends Command
 
     protected function createInMemoryDatabase()
     {
+        $defaultConnection = $this->app['config']->get('database.default');
+
         $this->app['config']->set('database.connections.'.self::CONNECTION_NAME, [
             'driver' => 'sqlite',
             'database' => ':memory:',
@@ -124,7 +126,7 @@ class SchemaUpdate extends Command
 
         // Makes sure the migrations table is created
         $this->artisan->call('migrate', [
-            '--database'     => self::CONNECTION_NAME,
+            '--database' => self::CONNECTION_NAME
         ]);
 
         // We empty all tables
@@ -132,8 +134,10 @@ class SchemaUpdate extends Command
 
         // Migrate
         $this->artisan->call('migrate', [
-            '--path'     => self::CONNECTION_NAME,
+            '--database' => self::CONNECTION_NAME
         ]);
+
+        $this->app['config']->set('database.default', $defaultConnection);
     }
 
     protected function getSchemaManager($connection = null)
