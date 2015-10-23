@@ -98,7 +98,7 @@ class SchemaUpdate extends Command
                 }
             });
         } else {
-            $this->info('To execute diff statements use the --force option');
+            $this->info('To apply diff statements use the --force option');
         }
     }
 
