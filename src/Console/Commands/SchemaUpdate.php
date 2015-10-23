@@ -83,7 +83,9 @@ class SchemaUpdate extends Command
 
         $this->info('Statements that will be executed:'.PHP_EOL);
 
-        $this->info(print_r($diffStatements, true));
+        foreach ($diffStatements as $statement) {
+            $this->info($statement);
+        }
 
         if ($this->option('force')) {
             DB::transaction(function () use ($diffStatements) {
