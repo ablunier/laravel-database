@@ -85,7 +85,7 @@ class SchemaUpdate extends Command
             $this->info('Statements that will be executed:'.PHP_EOL);
 
             foreach ($diffStatements as $statement) {
-                $this->info($statement);
+                $this->info('- '.$statement);
             }
         } else {
             $this->info('The schema is up to date with the migrations.'.PHP_EOL);
