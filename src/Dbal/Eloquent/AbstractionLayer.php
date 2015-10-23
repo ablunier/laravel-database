@@ -20,6 +20,11 @@ class AbstractionLayer implements AbstractionLayerContract
         $this->model = $model;
     }
 
+    public function getModel()
+    {
+        return $this->model;
+    }
+
     protected function getSchemaManager()
     {
         $connection = Schema::getConnection();

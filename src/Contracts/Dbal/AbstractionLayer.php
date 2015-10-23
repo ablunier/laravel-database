@@ -3,6 +3,10 @@ namespace ANavallaSuiza\Laravel\Database\Contracts\Dbal;
 
 interface AbstractionLayer
 {
+    /**
+     * @return mixed
+     */
+    public function getModel();
 
     public function getTableColumns();
 
