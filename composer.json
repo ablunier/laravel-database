@@ -1,7 +1,7 @@
 {
     "name": "ablunier/laravel-database",
-    "description": "",
-    "keywords": [],
+    "description": "Laravel database utilities package. Repository, cache, abstraction layer.",
+    "keywords": ["laravel", "eloquent", "database", "repository", "cache", "abstraction"],
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +13,11 @@
         "php": ">=5.4.0",
         "illuminate/support": "5.0.*",
         "illuminate/database": "5.0.*",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "2.5.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": {
