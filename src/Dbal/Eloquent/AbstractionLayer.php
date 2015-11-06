@@ -43,7 +43,7 @@ class AbstractionLayer implements AbstractionLayerContract
 
     public function getModelAttributes()
     {
-        $columns = $this->getTableColumns($this->model);
+        $columns = $this->getTableColumns();
 
         $attributes = [];
         foreach ($columns as $fieldName => $field) {
@@ -55,6 +55,10 @@ class AbstractionLayer implements AbstractionLayerContract
 
     public function getRelations()
     {
+        $sm = $this->getSchemaManager();
 
+        $foreignKeys = $sm->listTableForeignKeys($this->model->getTable());
+
+        return $foreignKeys;
     }
 }
