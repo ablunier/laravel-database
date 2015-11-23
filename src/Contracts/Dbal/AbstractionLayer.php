@@ -10,6 +10,8 @@ interface AbstractionLayer
 
     public function getTableColumns();
 
+    public function getTableColumn($name);
+
     public function getModelAttributes();
 
     public function getTableForeignKeys();
