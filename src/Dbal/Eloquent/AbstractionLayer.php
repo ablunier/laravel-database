@@ -53,7 +53,7 @@ class AbstractionLayer implements AbstractionLayerContract
         return $attributes;
     }
 
-    public function getRelations()
+    public function getTableForeignKeys()
     {
         $sm = $this->getSchemaManager();
 

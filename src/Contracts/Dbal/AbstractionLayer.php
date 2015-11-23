@@ -12,5 +12,5 @@ interface AbstractionLayer
 
     public function getModelAttributes();
 
-    public function getRelations();
+    public function getTableForeignKeys();
 }
