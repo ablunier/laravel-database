@@ -36,16 +36,22 @@ class ModelManagerTest extends TestBase
 
     public function test_returns_model_custom_repository()
     {
+        $repository = $this->sut->getRepository('Database\Tests\Models\Post');
 
+        $this->assertInstanceOf('Database\Tests\Models\Repositories\PostRepository', $repository);
     }
 
     public function test_returns_model_cache_repository()
     {
+        $repository = $this->sut->getRepository('Database\Tests\Models\Country');
 
+        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache', $repository);
     }
 
     public function test_returns_model_abstraction_layer()
     {
+        $repository = $this->sut->getAbstractionLayer('Database\Tests\Models\User');
 
+        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $repository);
     }
 }
