@@ -1,12 +1,18 @@
 # Laravel Database [![Build Status](https://travis-ci.org/ablunier/laravel-database.svg?branch=master)](https://travis-ci.org/ablunier/laravel-database)
 
-This package provides an easy repository pattern for Laravel
+This package provides some utilities and patterns to work with Laravel databases
 
 
 > **Note:** This package is in active development and NOT ready for production.
 
+### Features
+* Automatic default and extendable repository pattern.
+* Cache system over repository pattern.
+* Model abstraction layer.
+* Schema update console command.
+
 ### Requirements
-* PHP 5.4 or higher.
+* PHP 5.5 or higher.
 * Laravel 5.
 
 ## Installation
@@ -20,16 +26,16 @@ This package provides an easy repository pattern for Laravel
 
 'providers' => [
     '...',
-    'ANavallaSuiza\Laravel\Database\Manager\ModelManagerServiceProvider',
+    ANavallaSuiza\Laravel\Database\Manager\ModelManagerServiceProvider::class,
 ];
 
 'aliases' => [
     '...',
-    'ModelManager' => 'ANavallaSuiza\Laravel\Database\Manager\Facades\ModelManager',
+    'ModelManager' => ANavallaSuiza\Laravel\Database\Manager\Facades\ModelManager::class,
 ];
 ```
 
-## Example of usage
+## Example of repository usage
 
 ```php
 <?php
