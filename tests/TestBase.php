@@ -2,6 +2,7 @@
 namespace Database\Tests;
 
 use Orchestra\Testbench\TestCase;
+use FilesystemIterator;
 use DB;
 use Mockery;
 
@@ -71,9 +72,9 @@ abstract class TestBase extends TestCase
      */
     public function test_running_migration()
     {
-        $migrations = \DB::select('SELECT * FROM migrations');
+        $migrations = DB::select('SELECT * FROM migrations');
 
-        $fi = new \FilesystemIterator(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .self::MIGRATIONS_PATH, \FilesystemIterator::SKIP_DOTS);
+        $fi = new FilesystemIterator(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .self::MIGRATIONS_PATH, FilesystemIterator::SKIP_DOTS);
 
         $this->assertCount(iterator_count($fi), $migrations);
     }
