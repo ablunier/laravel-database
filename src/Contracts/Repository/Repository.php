@@ -28,9 +28,10 @@ interface Repository
     /**
      * @param array $data
      * @param $id
+     * @param string $field
      * @return mixed
      */
-    public function update(array $data, $id);
+    public function update(array $data, $id, $field = "id");
 
     /**
      * @param $id

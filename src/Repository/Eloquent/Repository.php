@@ -43,7 +43,8 @@ class Repository implements RepositoryContract, CriteriaPerformer
     }
 
     /**
-     * @return mixed
+     * @param array $with
+     * @return Collection
      */
     public function all(array $with = array())
     {
