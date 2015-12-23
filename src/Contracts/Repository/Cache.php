@@ -10,6 +10,11 @@ interface Cache
     public function skipCache($status = true);
 
     /**
+     * @return $this
+     */
+    public function refreshCache();
+
+    /**
      * @param string $name
      * @return $this
      */

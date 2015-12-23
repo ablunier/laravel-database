@@ -24,6 +24,11 @@ class Cache implements CacheContract
     protected $skipCache = false;
 
     /**
+     * @var bool
+     */
+    protected $refreshCache = false;
+
+    /**
      * @var string
      */
     protected $key;
@@ -60,6 +65,14 @@ class Cache implements CacheContract
             $key = $this->key;
             unset($this->key);
 
+            if ($this->refreshCache) {
+                foreach ($this->cache->getMemory() as $cacheKey => $cacheValue) {
+                    if ($cacheKey === $key) {
+                        $this->cache->forget($cacheKey);
+                    }
+                }
+            }
+
             if (empty($this->lifetime)) {
                 $this->cacheLifetime($this->repository->getModel()->cacheLifetime());
             }
@@ -88,6 +101,16 @@ class Cache implements CacheContract
     public function skipCache($status = true)
     {
         $this->skipCache = $status;
+
+        return $this;
+    }
+
+    /**
+     *
+     */
+    public function refreshCache()
+    {
+        $this->refreshCache = true;
 
         return $this;
     }
