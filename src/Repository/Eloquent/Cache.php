@@ -71,6 +71,8 @@ class Cache implements CacheContract
                         $this->cache->forget($cacheKey);
                     }
                 }
+
+                $this->refreshCache = true;
             }
 
             if (empty($this->lifetime)) {
