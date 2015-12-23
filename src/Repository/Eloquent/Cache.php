@@ -66,11 +66,7 @@ class Cache implements CacheContract
             unset($this->key);
 
             if ($this->refreshCache) {
-                foreach ($this->cache->getMemory() as $cacheKey => $cacheValue) {
-                    if ($cacheKey === $key) {
-                        $this->cache->forget($cacheKey);
-                    }
-                }
+                $this->cache->forget($key);
 
                 $this->refreshCache = true;
             }
