@@ -14,6 +14,13 @@ class ModelManagerServiceProvider extends ServiceProvider
      */
     protected $defer = true;
 
+    public function boot()
+    {
+        $this->publishes([
+            __DIR__.'/../../config/laravel-database.php' => config_path('laravel-database.php'),
+        ], 'config');
+    }
+
     /**
      * Register the service provider.
      *
@@ -21,6 +28,8 @@ class ModelManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../../config/laravel-database.php', 'laravel-database');
+
         $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', function ($app) {
             return new ModelManager($app);
         });

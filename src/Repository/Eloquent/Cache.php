@@ -57,7 +57,7 @@ class Cache implements CacheContract
             throw new RepositoryException("Method $method not found on repository");
         }
 
-        if ($this->skipCache) {
+        if ($this->skipCache === true || config('laravel-database.cache') === false) {
             return call_user_func_array(array($this->repository, $method), $params);
         } else {
             if (empty($this->key)) {
