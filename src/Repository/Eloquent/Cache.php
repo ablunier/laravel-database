@@ -2,6 +2,7 @@
 namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent;
 
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\Cache as CacheContract;
+use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
 use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Contracts\Cache\Repository as LaravelCache;
 use ReflectionClass;
@@ -41,7 +42,7 @@ class Cache implements CacheContract
     /**
      *
      */
-    public function __construct(Repository $repository, LaravelCache $cache)
+    public function __construct(RepositoryContract $repository, LaravelCache $cache)
     {
         $this->repository = $repository;
         $this->cache = $cache;
@@ -68,7 +69,7 @@ class Cache implements CacheContract
             if ($this->refreshCache) {
                 $this->cache->forget($key);
 
-                $this->refreshCache = true;
+                $this->refreshCache = false;
             }
 
             if (empty($this->lifetime)) {
