@@ -48,8 +48,11 @@ class CacheTest extends TestBase
         $this->repositoryMock->shouldReceive('getModel')->andReturn($modelMock);
         $this->repositoryMock->shouldReceive('all')->andReturn(new Collection);
 
-        $this->cacheMock->shouldReceive('forget', 'remember');
+        $this->cacheMock->shouldReceive('forget');
+        $this->cacheMock->shouldReceive('remember')->andReturn(new Collection);
 
-        $this->sut->refreshCache()->all();
+        $result = $this->sut->refreshCache()->all();
+
+        $this->assertInstanceOf('Illuminate\Support\Collection', $result);
     }
 }
