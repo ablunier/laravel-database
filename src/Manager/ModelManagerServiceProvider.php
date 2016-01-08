@@ -39,15 +39,14 @@ class ModelManagerServiceProvider extends ServiceProvider
 
     protected function registerCommands()
     {
-        $this->app->singleton('command.database.schema-update', function ($app) {
+        /*$this->app->singleton('command.database.schema-update', function ($app) {
             $console = $app->make('Illuminate\Contracts\Console\Kernel');
 
             return new SchemaUpdate($app, $console);
         });
 
-        $this->commands('command.database.schema-update');
+        $this->commands('command.database.schema-update');*/
     }
-
 
     /**
      * Get the services provided by the provider.
@@ -58,7 +57,7 @@ class ModelManagerServiceProvider extends ServiceProvider
     {
         return [
             'ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager',
-            'command.database.schema-update'
+            //'command.database.schema-update'
         ];
     }
 }
