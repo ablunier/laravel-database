@@ -6,11 +6,11 @@
     "authors": [
         {
             "name": "Adrian P. Blunier",
-            "email": "adrian@blunier.net"
+            "email": "adrian.blunier@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.5.9",
         "illuminate/support": "5.1.*",
         "illuminate/database": "5.1.*",
         "doctrine/dbal": "2.5.*"
