@@ -17,10 +17,12 @@ This package provides some utilities and patterns to work with Laravel databases
 
 ## Installation
 
-```json
-"ablunier/laravel-database": "dev-master"
+Require this package with composer:
+```
+composer require ablunier/laravel-database
 ```
 
+After updating composer, add the ServiceProvider and Facade (optional) to the app.php config file:
 ```php
 // config/app.php
 
@@ -35,7 +37,12 @@ This package provides some utilities and patterns to work with Laravel databases
 ];
 ```
 
-## Example of repository usage
+Copy the package config to your local config with the publish command:
+```
+php artisan vendor:publish
+```
+
+## Usage
 
 ```php
 <?php
