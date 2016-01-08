@@ -9,7 +9,6 @@ This package provides some utilities and patterns to work with Laravel databases
 * Automatic default and extendable repository pattern.
 * Cache system over repository pattern.
 * Model abstraction layer.
-* Schema update console command.
 
 ### Requirements
 * PHP 5.5 or higher.
@@ -44,6 +43,7 @@ php artisan vendor:publish
 
 ## Usage
 
+### Repository pattern
 ```php
 <?php
 namespace App\Http\Controllers;
@@ -94,6 +94,10 @@ class ExampleController extends Controller
     }
 }
 ```
+
+### Cache
+
+### Abstraction layer
 
 ## Documentation
 
