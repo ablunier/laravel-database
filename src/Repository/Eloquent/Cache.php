@@ -53,7 +53,7 @@ class Cache implements CacheContract
      */
     public function __call($method, $params)
     {
-        if (! method_exists($this->repository, $method)) {
+        if (!method_exists($this->repository, $method)) {
             throw new RepositoryException("Method $method not found on repository");
         }
 
@@ -78,7 +78,7 @@ class Cache implements CacheContract
             $lifetime = $this->lifetime;
             unset($this->lifetime);
 
-            return $this->cache->remember($key, $lifetime, function () use ($method, $params) {
+            return $this->cache->remember($key, $lifetime, function() use ($method, $params) {
                 return call_user_func_array(array($this->repository, $method), $params);
             });
         }

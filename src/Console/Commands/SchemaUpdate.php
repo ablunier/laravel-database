@@ -84,7 +84,7 @@ class SchemaUpdate extends Command
         }
 
         if ($this->option('force')) {
-            DB::transaction(function () use ($diffStatements) {
+            DB::transaction(function() use ($diffStatements) {
                 foreach ($diffStatements as $statement) {
                     DB::statement($statement);
                 }
@@ -120,6 +120,9 @@ class SchemaUpdate extends Command
         $this->app['config']->set('database.default', $defaultConnection);
     }
 
+    /**
+     * @param string $connection
+     */
     protected function getSchemaManager($connection = null)
     {
         if (isset($connection)) {
@@ -131,6 +134,9 @@ class SchemaUpdate extends Command
         return $connection->getDoctrineSchemaManager();
     }
 
+    /**
+     * @return \Doctrine\DBAL\Platforms\AbstractPlatform
+     */
     protected function getDatabasePlatform($connection = null)
     {
         if (isset($connection)) {
