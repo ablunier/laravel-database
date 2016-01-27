@@ -1,4 +1,4 @@
-# Laravel Database [![Build Status](https://travis-ci.org/ablunier/laravel-database.svg?branch=master)](https://travis-ci.org/ablunier/laravel-database)
+# Laravel Database [![Build Status](https://travis-ci.org/ablunier/laravel-database.svg?branch=master)](https://travis-ci.org/ablunier/laravel-database) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ablunier/laravel-database/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ablunier/laravel-database/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/ablunier/laravel-database/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ablunier/laravel-database/?branch=master)
 
 This package provides some utilities and patterns to work with Laravel databases
 
