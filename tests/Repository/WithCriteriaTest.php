@@ -30,8 +30,7 @@ class WithCriteriaTest extends TestBase
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Builder', $eloquentBuilder);
 
         $eagerLoads = $eloquentBuilder->getEagerLoads();
-        $relationNames = array_keys($eagerLoads);
 
-        $this->assertContains('user', $relationNames);
+        $this->assertArrayHasKey('user', $eagerLoads);
     }
 }
