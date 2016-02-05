@@ -82,4 +82,21 @@ class RepositoryTest extends TestBase
             'name' => 'Ana Valla'
         ], 25);
     }
+
+    public function test_deletes_model()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $this->assertEquals('Ana Valla Suiza', $model->name);
+
+        $this->sut->delete($model->id);
+
+        $result = $this->sut->find($model->id);
+
+        $this->assertEquals(null, $result);
+    }
 }
