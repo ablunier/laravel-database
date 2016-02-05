@@ -26,7 +26,6 @@ class Repository implements RepositoryContract, CriteriaPerformer
     protected $skipCriteria = false;
 
     /**
-     * @param App $app
      */
     public function __construct(EloquentModel $model)
     {
@@ -35,7 +34,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
     }
 
     /**
-     * @return mixed
+     * @return EloquentModel
      */
     public function getModel()
     {
@@ -76,7 +75,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $data
-     * @return mixed
+     * @return EloquentModel
      */
     public function create(array $data)
     {
@@ -104,7 +103,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param $id
-     * @return mixed
+     * @return integer
      */
     public function delete($id)
     {
@@ -150,7 +149,6 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param $field
      * @param $value
-     * @param array $columns
      * @return mixed
      */
     public function findBy($field, $value, array $with = array())
@@ -168,7 +166,6 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param $field
      * @param $value
-     * @param array $columns
      * @return mixed
      */
     public function findByOrFail($field, $value, array $with = array())
@@ -236,7 +233,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
     public function getCriteria()
     {
