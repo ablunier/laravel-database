@@ -1,5 +1,5 @@
 <?php
-namespace Database\Tests\Manager;
+namespace Database\Tests\Repository;
 
 use Database\Tests\TestBase;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
