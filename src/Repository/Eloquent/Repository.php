@@ -5,6 +5,7 @@ use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository as Repository
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\CriteriaPerformer;
 use ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
+use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Collection;
 
@@ -90,7 +91,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param array $data
      * @param $id
      * @param string $field
-     * @return mixed
+     * @return EloquentModel
      */
     public function update(array $data, $id, $field = "id")
     {
@@ -98,7 +99,13 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
         $this->refresh();
 
-        return $result;
+        if (! $result) {
+            throw new RepositoryException("There was an error updating the model");
+        }
+
+        $model = $this->find($id);
+
+        return $model;
     }
 
     /**

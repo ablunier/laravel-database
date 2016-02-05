@@ -3,6 +3,7 @@ namespace Database\Tests\Manager;
 
 use Database\Tests\TestBase;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
+use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
 
 class RepositoryTest extends TestBase
 {
@@ -53,5 +54,32 @@ class RepositoryTest extends TestBase
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Model', $result);
         $this->assertInternalType('int', $result->id);
         $this->assertEquals('anavalla@suiza.com', $result->email);
+    }
+
+    public function test_updates_model()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $this->assertEquals('Ana Valla Suiza', $model->name);
+
+        $result = $this->sut->update([
+            'name' => 'Ana Valla'
+        ], $model->id);
+
+        $this->assertInstanceOf('Illuminate\Database\Eloquent\Model', $result);
+        $this->assertEquals('Ana Valla', $result->name);
+    }
+
+    public function test_update_throws_exception()
+    {
+        $this->setExpectedException(RepositoryException::class);
+
+        $result = $this->sut->update([
+            'name' => 'Ana Valla'
+        ], 25);
     }
 }
