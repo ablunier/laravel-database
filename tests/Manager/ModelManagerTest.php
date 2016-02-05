@@ -27,6 +27,13 @@ class ModelManagerTest extends TestBase
         $this->assertInstanceOf('Database\Tests\Models\User', $modelInstance);
     }
 
+    public function test_throws_exception_when_not_eloquent_model()
+    {
+        $this->setExpectedException(\Exception::class);
+
+        $this->sut->getModelInstance('Database\Tests\Models\Repositories\PostRepository');
+    }
+
     public function test_returns_model_default_repository()
     {
         $repository = $this->sut->getRepository('Database\Tests\Models\User');
@@ -46,6 +53,13 @@ class ModelManagerTest extends TestBase
         $repository = $this->sut->getRepository('Database\Tests\Models\Country');
 
         $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache', $repository);
+    }
+
+    public function test_throws_exception_when_custom_repository_is_not_extending_default()
+    {
+        $this->setExpectedException(\Exception::class);
+
+        $repository = $this->sut->getRepository('Database\Tests\Models\Text');
     }
 
     public function test_returns_model_abstraction_layer()
