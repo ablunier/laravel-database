@@ -28,7 +28,7 @@ class ModelManager implements ModelManagerContract
      *
      * @param string $modelName
      *
-     * @return Illuminate\Database\Eloquent\Model
+     * @return EloquentModel
      */
     public function getModelInstance($modelName)
     {

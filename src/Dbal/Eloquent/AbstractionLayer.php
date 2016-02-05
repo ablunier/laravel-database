@@ -13,7 +13,6 @@ class AbstractionLayer implements AbstractionLayerContract
     protected $model;
 
     /**
-     * @param App $app
      */
     public function __construct(EloquentModel $model)
     {

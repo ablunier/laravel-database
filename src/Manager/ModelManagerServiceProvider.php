@@ -30,7 +30,7 @@ class ModelManagerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-database.php', 'laravel-database');
 
-        $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', function ($app) {
+        $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', function($app) {
             return new ModelManager($app);
         });
 
