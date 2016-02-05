@@ -4,6 +4,7 @@ namespace Database\Tests\Manager;
 use Database\Tests\TestBase;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
 use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache;
+use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Support\Collection;
 use Mockery\Mock;
 
@@ -29,6 +30,13 @@ class CacheTest extends TestBase
     public function test_implements_cache_interface()
     {
         $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Repository\Cache', $this->sut);
+    }
+
+    public function test_throws_repository_exception_when_method_does_not_exist()
+    {
+        $this->setExpectedException(RepositoryException::class);
+
+        $this->sut->whateverRepoMethod();
     }
 
     public function test_skips_cache()

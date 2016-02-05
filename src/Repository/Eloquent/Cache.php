@@ -10,7 +10,7 @@ use ReflectionClass;
 class Cache implements CacheContract
 {
     /**
-     * @var Repository
+     * @var RepositoryContract
      */
     protected $repository;
 
