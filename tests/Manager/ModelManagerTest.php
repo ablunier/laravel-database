@@ -31,7 +31,7 @@ class ModelManagerTest extends TestBase
     {
         $this->setExpectedException(\Exception::class);
 
-        $this->sut->getModelInstance('Database\Tests\Models\Repositories\PostRepository');
+        $this->sut->getModelInstance('Database\Tests\Models\WrongModel');
     }
 
     public function test_returns_model_default_repository()
