@@ -99,4 +99,77 @@ class RepositoryTest extends TestBase
 
         $this->assertEquals(null, $result);
     }
+
+    public function test_finds_model_by_identifier()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $result = $this->sut->find($model->id);
+
+        $this->assertInstanceOf('Database\Tests\Models\User', $result);
+    }
+
+    public function test_finds_model_by_identifier_or_fails()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $modelId = $model->id;
+
+        $result = $this->sut->findOrFail($modelId);
+
+        $this->assertInstanceOf('Database\Tests\Models\User', $result);
+
+        $this->sut->delete($modelId);
+
+        $this->setExpectedException(\Exception::class);
+
+        $this->sut->findOrFail($modelId);
+    }
+
+    public function test_finds_model_by_field()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $result = $this->sut->findBy('email', 'anavalla@suiza.com');
+
+        $this->assertInstanceOf('Database\Tests\Models\User', $result);
+    }
+
+    public function test_finds_model_by_field_or_fails()
+    {
+        $model = $this->sut->create([
+            'name' => 'Ana Valla Suiza',
+            'email' => 'anavalla@suiza.com',
+            'password' => '123456'
+        ]);
+
+        $result = $this->sut->findByOrFail('email', 'anavalla@suiza.com');
+
+        $this->assertInstanceOf('Database\Tests\Models\User', $result);
+
+        $this->sut->delete($model->id);
+
+        $this->setExpectedException(\Exception::class);
+
+        $this->sut->findByOrFail('email', 'anavalla@suiza.com');
+    }
+
+    public function test_find_all_by_field()
+    {
+        $result = $this->sut->findAllBy('email', 'anavalla@suiza.com');
+
+        $this->assertInstanceOf('Illuminate\Support\Collection', $result);
+    }
 }
