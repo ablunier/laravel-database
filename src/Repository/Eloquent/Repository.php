@@ -220,7 +220,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     protected function refresh()
     {
-        if (! $this->model instanceof EloquentModel) {
+        if (!$this->model instanceof EloquentModel) {
             $this->model = $this->model->getModel();
         }
 

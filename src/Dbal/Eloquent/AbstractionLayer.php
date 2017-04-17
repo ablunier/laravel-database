@@ -44,7 +44,7 @@ class AbstractionLayer implements AbstractionLayerContract
     {
         $columns = $this->getTableColumns();
 
-        if (! array_key_exists($name, $columns)) {
+        if (!array_key_exists($name, $columns)) {
             throw new \Exception("Column ".$name." not found on ".$this->model->getTable());
         }
 

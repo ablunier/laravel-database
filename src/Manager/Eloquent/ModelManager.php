@@ -10,9 +10,9 @@ use Illuminate\Contracts\Foundation\Application;
 
 class ModelManager implements ModelManagerContract
 {
-     /**
-     * @var Application
-     */
+        /**
+         * @var Application
+         */
     private $app;
 
     /**
@@ -34,7 +34,7 @@ class ModelManager implements ModelManagerContract
     {
         $modelInstance = $this->app->make($modelName);
 
-        if (! $modelInstance instanceof EloquentModel) {
+        if (!$modelInstance instanceof EloquentModel) {
             $message = "Target [$modelName] is not an Illuminate\Database\Eloquent\Model instance.";
 
             throw new \Exception($message);
@@ -55,7 +55,7 @@ class ModelManager implements ModelManagerContract
         if ($modelInstance instanceof HasCustomRepository) {
             $repository = $this->app->make($modelInstance->repository(), $args);
 
-            if (! $repository instanceof Repository) {
+            if (!$repository instanceof Repository) {
                 $message = "The [$modelName] custom repository must extend ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository.";
 
                 throw new \Exception($message);
