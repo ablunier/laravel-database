@@ -1,19 +1,20 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Contracts\Repository;
 
 interface HasCache
 {
     /**
-     * Enable or disable caching model queries
+     * Enable or disable caching model queries.
      *
-     * @return boolean
+     * @return bool
      */
     public function cache();
 
     /**
-     * Set cache lifetime
+     * Set cache lifetime.
      *
-     * @return integer
+     * @return int
      */
     public function cacheLifetime();
 }

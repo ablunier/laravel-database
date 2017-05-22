@@ -1,9 +1,10 @@
 <?php
+
 namespace Database\Tests\Repository;
 
-use Database\Tests\TestBase;
 use Ablunier\Laravel\Database\Repository\Eloquent\Repository;
 use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Database\Tests\TestBase;
 
 class RepositoryTest extends TestBase
 {
@@ -46,9 +47,9 @@ class RepositoryTest extends TestBase
     public function test_creates_model()
     {
         $result = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Model', $result);
@@ -59,15 +60,15 @@ class RepositoryTest extends TestBase
     public function test_updates_model()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $this->assertEquals('Ana Valla Suiza', $model->name);
 
         $result = $this->sut->update([
-            'name' => 'Ana Valla'
+            'name' => 'Ana Valla',
         ], $model->id);
 
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Model', $result);
@@ -79,16 +80,16 @@ class RepositoryTest extends TestBase
         $this->setExpectedException(RepositoryException::class);
 
         $result = $this->sut->update([
-            'name' => 'Ana Valla'
+            'name' => 'Ana Valla',
         ], 25);
     }
 
     public function test_deletes_model()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $this->assertEquals('Ana Valla Suiza', $model->name);
@@ -103,9 +104,9 @@ class RepositoryTest extends TestBase
     public function test_finds_model_by_identifier()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $result = $this->sut->find($model->id);
@@ -116,9 +117,9 @@ class RepositoryTest extends TestBase
     public function test_finds_model_by_identifier_or_fails()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $modelId = $model->id;
@@ -137,9 +138,9 @@ class RepositoryTest extends TestBase
     public function test_finds_model_by_field()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $result = $this->sut->findBy('email', 'anavalla@suiza.com');
@@ -150,9 +151,9 @@ class RepositoryTest extends TestBase
     public function test_finds_model_by_field_or_fails()
     {
         $model = $this->sut->create([
-            'name' => 'Ana Valla Suiza',
-            'email' => 'anavalla@suiza.com',
-            'password' => '123456'
+            'name'     => 'Ana Valla Suiza',
+            'email'    => 'anavalla@suiza.com',
+            'password' => '123456',
         ]);
 
         $result = $this->sut->findByOrFail('email', 'anavalla@suiza.com');

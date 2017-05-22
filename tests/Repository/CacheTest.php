@@ -1,10 +1,10 @@
 <?php
+
 namespace Database\Tests\Manager;
 
-use Database\Tests\TestBase;
-use Ablunier\Laravel\Database\Repository\Eloquent\Repository;
 use Ablunier\Laravel\Database\Repository\Eloquent\Cache;
 use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Database\Tests\TestBase;
 use Illuminate\Support\Collection;
 use Mockery\Mock;
 
@@ -12,9 +12,9 @@ class CacheTest extends TestBase
 {
     /** @var Ablunier\Laravel\Database\Repository\Eloquent\Cache */
     protected $sut;
-    /** @var  Mock */
+    /** @var Mock */
     protected $repositoryMock;
-    /** @var  Mock */
+    /** @var Mock */
     protected $cacheMock;
 
     public function setUp()
@@ -41,7 +41,7 @@ class CacheTest extends TestBase
 
     public function test_skips_cache()
     {
-        $this->repositoryMock->shouldReceive('all')->andReturn(new Collection);
+        $this->repositoryMock->shouldReceive('all')->andReturn(new Collection());
 
         $result = $this->sut->skipCache(true)->all();
 
@@ -54,10 +54,10 @@ class CacheTest extends TestBase
         $modelMock->shouldReceive('cacheLifetime')->andReturn(10);
 
         $this->repositoryMock->shouldReceive('getModel')->andReturn($modelMock);
-        $this->repositoryMock->shouldReceive('all')->andReturn(new Collection);
+        $this->repositoryMock->shouldReceive('all')->andReturn(new Collection());
 
         $this->cacheMock->shouldReceive('forget');
-        $this->cacheMock->shouldReceive('remember')->andReturn(new Collection);
+        $this->cacheMock->shouldReceive('remember')->andReturn(new Collection());
 
         $result = $this->sut->refreshCache()->all();
 

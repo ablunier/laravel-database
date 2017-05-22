@@ -1,10 +1,12 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Contracts\Repository;
 
 interface CriteriaPerformer
 {
     /**
      * @param bool $status
+     *
      * @return $this
      */
     public function skipCriteria($status = true);
@@ -16,12 +18,14 @@ interface CriteriaPerformer
 
     /**
      * @param Criteria $criteria
+     *
      * @return $this
      */
     public function getByCriteria(Criteria $criteria);
 
     /**
      * @param Criteria $criteria
+     *
      * @return $this
      */
     public function pushCriteria(Criteria $criteria);

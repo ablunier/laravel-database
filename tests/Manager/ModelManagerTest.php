@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Tests\Manager;
 
 use Database\Tests\TestBase;

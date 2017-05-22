@@ -1,9 +1,10 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Repository\Eloquent;
 
-use Ablunier\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
-use Ablunier\Laravel\Database\Contracts\Repository\CriteriaPerformer;
 use Ablunier\Laravel\Database\Contracts\Repository\Criteria;
+use Ablunier\Laravel\Database\Contracts\Repository\CriteriaPerformer;
+use Ablunier\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
 use Ablunier\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
 use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
@@ -26,12 +27,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
      */
     protected $skipCriteria = false;
 
-    /**
-     */
     public function __construct(EloquentModel $model)
     {
         $this->model = $model;
-        $this->criteria = new Collection;
+        $this->criteria = new Collection();
     }
 
     /**
@@ -44,9 +43,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $with
+     *
      * @return Collection
      */
-    public function all(array $with = array())
+    public function all(array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -60,9 +60,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param int $perPage
+     *
      * @return mixed
      */
-    public function paginate($perPage = 15, array $with = array())
+    public function paginate($perPage = 15, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -76,6 +77,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $data
+     *
      * @return EloquentModel
      */
     public function create(array $data)
@@ -91,16 +93,17 @@ class Repository implements RepositoryContract, CriteriaPerformer
      * @param array $data
      * @param $id
      * @param string $field
+     *
      * @return EloquentModel
      */
-    public function update(array $data, $id, $field = "id")
+    public function update(array $data, $id, $field = 'id')
     {
         $result = $this->model->where($field, '=', $id)->update($data);
 
         $this->refresh();
 
-        if (! $result) {
-            throw new RepositoryException("There was an error updating the model");
+        if (!$result) {
+            throw new RepositoryException('There was an error updating the model');
         }
 
         $model = $this->find($id);
@@ -110,7 +113,8 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param $id
-     * @return integer
+     *
+     * @return int
      */
     public function delete($id)
     {
@@ -123,9 +127,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param $id
+     *
      * @return mixed
      */
-    public function find($id, array $with = array())
+    public function find($id, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -139,9 +144,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param $id
+     *
      * @return mixed|Exception
      */
-    public function findOrFail($id, array $with = array())
+    public function findOrFail($id, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -156,9 +162,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param $field
      * @param $value
+     *
      * @return mixed
      */
-    public function findBy($field, $value, array $with = array())
+    public function findBy($field, $value, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -173,9 +180,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param $field
      * @param $value
+     *
      * @return mixed
      */
-    public function findByOrFail($field, $value, array $with = array())
+    public function findByOrFail($field, $value, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -190,9 +198,10 @@ class Repository implements RepositoryContract, CriteriaPerformer
     /**
      * @param $field
      * @param $value
+     *
      * @return mixed
      */
-    public function findAllBy($field, $value, array $with = array())
+    public function findAllBy($field, $value, array $with = [])
     {
         $this->addWithCriteria($with);
         $this->applyCriteria();
@@ -206,30 +215,29 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $with
+     *
      * @return void
      */
-    protected function addWithCriteria(array $with = array())
+    protected function addWithCriteria(array $with = [])
     {
         if (count($with) > 0) {
             $this->pushCriteria(new WithCriteria($with));
         }
     }
 
-    /**
-     *
-     */
     protected function refresh()
     {
-        if (! $this->model instanceof EloquentModel) {
+        if (!$this->model instanceof EloquentModel) {
             $this->model = $this->model->getModel();
         }
 
         $this->model = $this->model->newInstance();
-        $this->criteria = new Collection;
+        $this->criteria = new Collection();
     }
 
     /**
      * @param bool $status
+     *
      * @return $this
      */
     public function skipCriteria($status = true)
@@ -249,6 +257,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param Criteria $criteria
+     *
      * @return $this
      */
     public function getByCriteria(Criteria $criteria)
@@ -260,6 +269,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param Criteria $criteria
+     *
      * @return $this
      */
     public function pushCriteria(Criteria $criteria)

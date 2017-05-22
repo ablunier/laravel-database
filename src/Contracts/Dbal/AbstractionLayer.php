@@ -1,4 +1,5 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Contracts\Dbal;
 
 interface AbstractionLayer

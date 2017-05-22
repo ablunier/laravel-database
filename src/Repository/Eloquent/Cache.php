@@ -1,4 +1,5 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Repository\Eloquent;
 
 use Ablunier\Laravel\Database\Contracts\Repository\Cache as CacheContract;
@@ -35,22 +36,16 @@ class Cache implements CacheContract
     protected $key;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $lifetime;
 
-    /**
-     *
-     */
     public function __construct(RepositoryContract $repository, LaravelCache $cache)
     {
         $this->repository = $repository;
         $this->cache = $cache;
     }
 
-    /**
-     *
-     */
     public function __call($method, $params)
     {
         if (!method_exists($this->repository, $method)) {
@@ -58,7 +53,7 @@ class Cache implements CacheContract
         }
 
         if ($this->skipCache === true || config('laravel-database.cache') === false) {
-            return call_user_func_array(array($this->repository, $method), $params);
+            return call_user_func_array([$this->repository, $method], $params);
         } else {
             if (empty($this->key)) {
                 $this->cacheKey($this->generateKey($method, $params));
@@ -78,15 +73,12 @@ class Cache implements CacheContract
             $lifetime = $this->lifetime;
             unset($this->lifetime);
 
-            return $this->cache->remember($key, $lifetime, function() use ($method, $params) {
-                return call_user_func_array(array($this->repository, $method), $params);
+            return $this->cache->remember($key, $lifetime, function () use ($method, $params) {
+                return call_user_func_array([$this->repository, $method], $params);
             });
         }
     }
 
-    /**
-     *
-     */
     protected function generateKey($method, $params)
     {
         $className = (new ReflectionClass($this->repository->getModel()))->getShortName();
@@ -94,9 +86,6 @@ class Cache implements CacheContract
         return strtolower($className).'.'.strtolower($method).'.'.md5(serialize($params));
     }
 
-    /**
-     *
-     */
     public function skipCache($status = true)
     {
         $this->skipCache = $status;
@@ -104,9 +93,6 @@ class Cache implements CacheContract
         return $this;
     }
 
-    /**
-     *
-     */
     public function refreshCache()
     {
         $this->refreshCache = true;
@@ -114,9 +100,6 @@ class Cache implements CacheContract
         return $this;
     }
 
-    /**
-     *
-     */
     public function cacheKey($name)
     {
         $this->key = $name;
@@ -124,9 +107,6 @@ class Cache implements CacheContract
         return $this;
     }
 
-    /**
-     *
-     */
     public function cacheLifetime($minutes)
     {
         $this->lifetime = $minutes;

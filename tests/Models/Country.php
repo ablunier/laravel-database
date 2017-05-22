@@ -1,15 +1,16 @@
 <?php
+
 namespace Database\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Ablunier\Laravel\Database\Contracts\Repository\HasCache;
+use Illuminate\Database\Eloquent\Model;
 
 class Country extends Model implements HasCache
 {
     /**
-     * Enable or disable caching model queries
+     * Enable or disable caching model queries.
      *
-     * @return boolean
+     * @return bool
      */
     public function cache()
     {
@@ -17,9 +18,9 @@ class Country extends Model implements HasCache
     }
 
     /**
-     * Set cache lifetime
+     * Set cache lifetime.
      *
-     * @return integer
+     * @return int
      */
     public function cacheLifetime()
     {

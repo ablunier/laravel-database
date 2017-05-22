@@ -1,13 +1,14 @@
 <?php
+
 namespace Database\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Ablunier\Laravel\Database\Contracts\Repository\HasCustomRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class Text extends Model implements HasCustomRepository
 {
     /**
-     * Get Eloquent Model custom repository
+     * Get Eloquent Model custom repository.
      *
      * @return string
      */

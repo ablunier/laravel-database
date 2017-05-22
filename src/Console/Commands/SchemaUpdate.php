@@ -1,12 +1,13 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Foundation\Application;
-use Illuminate\Contracts\Console\Kernel as Console;
-use Schema;
 use DB;
 use Doctrine\DBAL\Schema\Comparator;
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\Kernel as Console;
+use Illuminate\Foundation\Application;
+use Schema;
 
 class SchemaUpdate extends Command
 {
@@ -27,13 +28,11 @@ class SchemaUpdate extends Command
     protected $description = 'Updates database schema with any migration changes';
 
     /**
-     *
      * @var Application
      */
     protected $app;
 
     /**
-     *
      * @var Console
      */
     protected $artisan;
@@ -84,7 +83,7 @@ class SchemaUpdate extends Command
         }
 
         if ($this->option('force')) {
-            DB::transaction(function() use ($diffStatements) {
+            DB::transaction(function () use ($diffStatements) {
                 foreach ($diffStatements as $statement) {
                     DB::statement($statement);
                 }
@@ -99,14 +98,14 @@ class SchemaUpdate extends Command
         $defaultConnection = $this->app['config']->get('database.default');
 
         $this->app['config']->set('database.connections.'.self::CONNECTION_NAME, [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => ''
+            'prefix'   => '',
         ]);
 
         // Makes sure the migrations table is created
         $this->artisan->call('migrate', [
-            '--database' => self::CONNECTION_NAME
+            '--database' => self::CONNECTION_NAME,
         ]);
 
         // We empty all tables
@@ -114,7 +113,7 @@ class SchemaUpdate extends Command
 
         // Migrate
         $this->artisan->call('migrate', [
-            '--database' => self::CONNECTION_NAME
+            '--database' => self::CONNECTION_NAME,
         ]);
 
         $this->app['config']->set('database.default', $defaultConnection);
