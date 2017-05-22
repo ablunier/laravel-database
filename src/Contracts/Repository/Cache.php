@@ -1,10 +1,12 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Contracts\Repository;
 
 interface Cache
 {
     /**
      * @param bool $status
+     *
      * @return $this
      */
     public function skipCache($status = true);
@@ -16,12 +18,14 @@ interface Cache
 
     /**
      * @param string $name
+     *
      * @return $this
      */
     public function cacheKey($name);
 
     /**
-     * @param integer $minutes
+     * @param int $minutes
+     *
      * @return $this
      */
     public function cacheLifetime($minutes);

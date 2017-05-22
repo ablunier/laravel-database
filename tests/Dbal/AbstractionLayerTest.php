@@ -1,8 +1,9 @@
 <?php
+
 namespace Database\Tests\Dbal;
 
-use Database\Tests\TestBase;
 use Ablunier\Laravel\Database\Dbal\Eloquent\AbstractionLayer;
+use Database\Tests\TestBase;
 
 class AbstractionLayerTest extends TestBase
 {
@@ -64,6 +65,5 @@ class AbstractionLayerTest extends TestBase
 
     public function test_returns_model_table_foreign_keys()
     {
-
     }
 }

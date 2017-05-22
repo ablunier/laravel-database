@@ -1,8 +1,9 @@
 <?php
+
 namespace Database\Tests\Repository;
 
-use Database\Tests\TestBase;
 use Ablunier\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
+use Database\Tests\TestBase;
 
 class WithCriteriaTest extends TestBase
 {

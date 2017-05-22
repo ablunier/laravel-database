@@ -1,9 +1,10 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Manager;
 
-use Illuminate\Support\ServiceProvider;
-use Ablunier\Laravel\Database\Manager\Eloquent\ModelManager;
 use Ablunier\Laravel\Database\Console\Commands\SchemaUpdate;
+use Ablunier\Laravel\Database\Manager\Eloquent\ModelManager;
+use Illuminate\Support\ServiceProvider;
 
 class ModelManagerServiceProvider extends ServiceProvider
 {
@@ -30,7 +31,7 @@ class ModelManagerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-database.php', 'laravel-database');
 
-        $this->app->bind('Ablunier\Laravel\Database\Contracts\Manager\ModelManager', function($app) {
+        $this->app->bind('Ablunier\Laravel\Database\Contracts\Manager\ModelManager', function ($app) {
             return new ModelManager($app);
         });
 

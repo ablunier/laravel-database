@@ -1,4 +1,5 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Manager\Facades;
 
 use Illuminate\Support\Facades\Facade;

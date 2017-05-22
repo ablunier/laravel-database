@@ -1,10 +1,11 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Contracts\Manager;
 
 interface ModelManager
 {
     /**
-     * Get Eloquent Model instance
+     * Get Eloquent Model instance.
      *
      * @param string $modelName
      *
@@ -13,7 +14,7 @@ interface ModelManager
     public function getModelInstance($modelName);
 
     /**
-     * Get Eloquent Model repository
+     * Get Eloquent Model repository.
      *
      * @param string $modelName
      *

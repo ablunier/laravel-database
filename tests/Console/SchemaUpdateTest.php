@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Tests\Manager;
 
 use Database\Tests\TestBase;
@@ -22,11 +23,9 @@ class SchemaUpdateTest extends TestBase
 
     public function test_handles_schema_updates()
     {
-
     }
 
     public function test_handles_and_executes_schema_updates()
     {
-
     }
 }

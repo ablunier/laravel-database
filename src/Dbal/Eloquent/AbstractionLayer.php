@@ -1,4 +1,5 @@
 <?php
+
 namespace Ablunier\Laravel\Database\Dbal\Eloquent;
 
 use Ablunier\Laravel\Database\Contracts\Dbal\AbstractionLayer as AbstractionLayerContract;
@@ -12,8 +13,6 @@ class AbstractionLayer implements AbstractionLayerContract
      */
     protected $model;
 
-    /**
-     */
     public function __construct(EloquentModel $model)
     {
         $this->model = $model;
@@ -44,8 +43,8 @@ class AbstractionLayer implements AbstractionLayerContract
     {
         $columns = $this->getTableColumns();
 
-        if (! array_key_exists($name, $columns)) {
-            throw new \Exception("Column ".$name." not found on ".$this->model->getTable());
+        if (!array_key_exists($name, $columns)) {
+            throw new \Exception('Column '.$name.' not found on '.$this->model->getTable());
         }
 
         return $columns[$name];

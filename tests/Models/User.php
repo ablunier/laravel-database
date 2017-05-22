@@ -1,4 +1,5 @@
 <?php
+
 namespace Database\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;

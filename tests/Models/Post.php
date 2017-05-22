@@ -1,12 +1,12 @@
 <?php
+
 namespace Database\Tests\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Ablunier\Laravel\Database\Contracts\Repository\HasCustomRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model implements HasCustomRepository
 {
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -16,7 +16,7 @@ class Post extends Model implements HasCustomRepository
     }
 
     /**
-     * Get Eloquent Model custom repository
+     * Get Eloquent Model custom repository.
      *
      * @return string
      */
