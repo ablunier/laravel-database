@@ -2,12 +2,12 @@
 namespace Database\Tests\Repository;
 
 use Database\Tests\TestBase;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
-use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Ablunier\Laravel\Database\Repository\Eloquent\Repository;
+use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
 
 class RepositoryTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository */
+    /** @var Ablunier\Laravel\Database\Repository\Eloquent\Repository */
     protected $sut;
 
     public function setUp()
@@ -19,7 +19,7 @@ class RepositoryTest extends TestBase
 
     public function test_implements_repository_interface()
     {
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository', $this->sut);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Contracts\Repository\Repository', $this->sut);
     }
 
     public function test_returns_model()

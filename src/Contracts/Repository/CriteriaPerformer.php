@@ -1,5 +1,5 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Contracts\Repository;
+namespace Ablunier\Laravel\Database\Contracts\Repository;
 
 interface CriteriaPerformer
 {

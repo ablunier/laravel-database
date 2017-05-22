@@ -2,7 +2,7 @@
 namespace Database\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCache;
+use Ablunier\Laravel\Database\Contracts\Repository\HasCache;
 
 class Country extends Model implements HasCache
 {

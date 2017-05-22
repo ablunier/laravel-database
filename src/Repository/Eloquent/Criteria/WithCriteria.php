@@ -1,8 +1,8 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria;
+namespace Ablunier\Laravel\Database\Repository\Eloquent\Criteria;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository;
+use Ablunier\Laravel\Database\Contracts\Repository\Criteria;
+use Ablunier\Laravel\Database\Contracts\Repository\Repository;
 
 class WithCriteria implements Criteria
 {

@@ -2,11 +2,11 @@
 namespace Database\Tests\Repository;
 
 use Database\Tests\TestBase;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
+use Ablunier\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
 
 class WithCriteriaTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria */
+    /** @var Ablunier\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria */
     protected $sut;
 
     public function setUp()
@@ -18,12 +18,12 @@ class WithCriteriaTest extends TestBase
 
     public function test_implements_criteria_interface()
     {
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria', $this->sut);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Contracts\Repository\Criteria', $this->sut);
     }
 
     public function test_applies_with()
     {
-        $repositoryMock = $this->mock('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository');
+        $repositoryMock = $this->mock('Ablunier\Laravel\Database\Repository\Eloquent\Repository');
 
         $eloquentBuilder = $this->sut->apply($this->app->make('Database\Tests\Models\Post'), $repositoryMock);
 

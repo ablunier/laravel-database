@@ -57,7 +57,7 @@ abstract class TestBase extends TestCase
 
     protected function getPackageProviders($app)
     {
-        return ['ANavallaSuiza\Laravel\Database\Manager\ModelManagerServiceProvider'];
+        return ['Ablunier\Laravel\Database\Manager\ModelManagerServiceProvider'];
     }
 
     public function mock($className)

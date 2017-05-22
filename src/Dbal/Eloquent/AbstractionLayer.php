@@ -1,7 +1,7 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Dbal\Eloquent;
+namespace Ablunier\Laravel\Database\Dbal\Eloquent;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Dbal\AbstractionLayer as AbstractionLayerContract;
+use Ablunier\Laravel\Database\Contracts\Dbal\AbstractionLayer as AbstractionLayerContract;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Schema;
 

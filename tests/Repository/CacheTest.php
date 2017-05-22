@@ -2,15 +2,15 @@
 namespace Database\Tests\Manager;
 
 use Database\Tests\TestBase;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache;
-use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Ablunier\Laravel\Database\Repository\Eloquent\Repository;
+use Ablunier\Laravel\Database\Repository\Eloquent\Cache;
+use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Support\Collection;
 use Mockery\Mock;
 
 class CacheTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache */
+    /** @var Ablunier\Laravel\Database\Repository\Eloquent\Cache */
     protected $sut;
     /** @var  Mock */
     protected $repositoryMock;
@@ -21,7 +21,7 @@ class CacheTest extends TestBase
     {
         parent::setUp();
 
-        $this->repositoryMock = $this->mock('ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository');
+        $this->repositoryMock = $this->mock('Ablunier\Laravel\Database\Contracts\Repository\Repository');
         $this->cacheMock = $this->mock('Illuminate\Contracts\Cache\Repository');
 
         $this->sut = new Cache($this->repositoryMock, $this->cacheMock);
@@ -29,7 +29,7 @@ class CacheTest extends TestBase
 
     public function test_implements_cache_interface()
     {
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Repository\Cache', $this->sut);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Contracts\Repository\Cache', $this->sut);
     }
 
     public function test_throws_repository_exception_when_method_does_not_exist()
@@ -50,7 +50,7 @@ class CacheTest extends TestBase
 
     public function test_refreshes_cache()
     {
-        $modelMock = $this->mock('ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCache');
+        $modelMock = $this->mock('Ablunier\Laravel\Database\Contracts\Repository\HasCache');
         $modelMock->shouldReceive('cacheLifetime')->andReturn(10);
 
         $this->repositoryMock->shouldReceive('getModel')->andReturn($modelMock);

@@ -1,9 +1,9 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Manager;
+namespace Ablunier\Laravel\Database\Manager;
 
 use Illuminate\Support\ServiceProvider;
-use ANavallaSuiza\Laravel\Database\Manager\Eloquent\ModelManager;
-use ANavallaSuiza\Laravel\Database\Console\Commands\SchemaUpdate;
+use Ablunier\Laravel\Database\Manager\Eloquent\ModelManager;
+use Ablunier\Laravel\Database\Console\Commands\SchemaUpdate;
 
 class ModelManagerServiceProvider extends ServiceProvider
 {
@@ -30,7 +30,7 @@ class ModelManagerServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-database.php', 'laravel-database');
 
-        $this->app->bind('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', function($app) {
+        $this->app->bind('Ablunier\Laravel\Database\Contracts\Manager\ModelManager', function($app) {
             return new ModelManager($app);
         });
 
@@ -56,7 +56,7 @@ class ModelManagerServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            'ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager',
+            'Ablunier\Laravel\Database\Contracts\Manager\ModelManager',
             //'command.database.schema-update'
         ];
     }

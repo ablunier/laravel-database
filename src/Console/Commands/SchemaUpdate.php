@@ -1,5 +1,5 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Console\Commands;
+namespace Ablunier\Laravel\Database\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Application;

@@ -5,14 +5,14 @@ use Database\Tests\TestBase;
 
 class SchemaUpdateTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Console\Commands\SchemaUpdate */
+    /** @var Ablunier\Laravel\Database\Console\Commands\SchemaUpdate */
     protected $sut;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->sut = $this->app->make('ANavallaSuiza\Laravel\Database\Console\Commands\SchemaUpdate');
+        $this->sut = $this->app->make('Ablunier\Laravel\Database\Console\Commands\SchemaUpdate');
     }
 
     public function test_extends_illuminate_command()

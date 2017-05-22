@@ -2,11 +2,11 @@
 namespace Database\Tests\Dbal;
 
 use Database\Tests\TestBase;
-use ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer;
+use Ablunier\Laravel\Database\Dbal\Eloquent\AbstractionLayer;
 
 class AbstractionLayerTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer */
+    /** @var Ablunier\Laravel\Database\Dbal\Eloquent\AbstractionLayer */
     protected $sut;
 
     public function setUp()
@@ -18,7 +18,7 @@ class AbstractionLayerTest extends TestBase
 
     public function test_implements_abstraction_layer_interface()
     {
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Dbal\AbstractionLayer', $this->sut);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Contracts\Dbal\AbstractionLayer', $this->sut);
     }
 
     public function test_returns_model()

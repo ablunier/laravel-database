@@ -1,5 +1,5 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Contracts\Manager;
+namespace Ablunier\Laravel\Database\Contracts\Manager;
 
 interface ModelManager
 {
@@ -17,14 +17,14 @@ interface ModelManager
      *
      * @param string $modelName
      *
-     * @return \ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository
+     * @return \Ablunier\Laravel\Database\Contracts\Repository\Repository
      */
     public function getRepository($modelName);
 
     /**
      * @param string $modelName
      *
-     * @return \ANavallaSuiza\Laravel\Database\Contracts\Dbal\AbstractionLayer
+     * @return \Ablunier\Laravel\Database\Contracts\Dbal\AbstractionLayer
      */
     public function getAbstractionLayer($modelName);
 }

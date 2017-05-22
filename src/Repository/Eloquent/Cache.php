@@ -1,9 +1,9 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent;
+namespace Ablunier\Laravel\Database\Repository\Eloquent;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Cache as CacheContract;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
-use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Ablunier\Laravel\Database\Contracts\Repository\Cache as CacheContract;
+use Ablunier\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
+use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Contracts\Cache\Repository as LaravelCache;
 use ReflectionClass;
 

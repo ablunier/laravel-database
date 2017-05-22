@@ -2,7 +2,7 @@
 namespace Database\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCustomRepository;
+use Ablunier\Laravel\Database\Contracts\Repository\HasCustomRepository;
 
 class Text extends Model implements HasCustomRepository
 {

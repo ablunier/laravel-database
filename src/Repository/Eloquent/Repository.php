@@ -1,11 +1,11 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Repository\Eloquent;
+namespace Ablunier\Laravel\Database\Repository\Eloquent;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\CriteriaPerformer;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\Criteria;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
-use ANavallaSuiza\Laravel\Database\Repository\Exceptions\RepositoryException;
+use Ablunier\Laravel\Database\Contracts\Repository\Repository as RepositoryContract;
+use Ablunier\Laravel\Database\Contracts\Repository\CriteriaPerformer;
+use Ablunier\Laravel\Database\Contracts\Repository\Criteria;
+use Ablunier\Laravel\Database\Repository\Eloquent\Criteria\WithCriteria;
+use Ablunier\Laravel\Database\Repository\Exceptions\RepositoryException;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Collection;
 

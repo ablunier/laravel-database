@@ -5,19 +5,19 @@ use Database\Tests\TestBase;
 
 class ModelManagerTest extends TestBase
 {
-    /** @var ANavallaSuiza\Laravel\Database\Manager\Eloquent\ModelManager */
+    /** @var Ablunier\Laravel\Database\Manager\Eloquent\ModelManager */
     protected $sut;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->sut = $this->app->make('ANavallaSuiza\Laravel\Database\Manager\Eloquent\ModelManager');
+        $this->sut = $this->app->make('Ablunier\Laravel\Database\Manager\Eloquent\ModelManager');
     }
 
     public function test_implements_manager_interface()
     {
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager', $this->sut);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Contracts\Manager\ModelManager', $this->sut);
     }
 
     public function test_returns_model_instance()
@@ -38,7 +38,7 @@ class ModelManagerTest extends TestBase
     {
         $repository = $this->sut->getRepository('Database\Tests\Models\User');
 
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $repository);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Repository\Eloquent\Repository', $repository);
     }
 
     public function test_returns_model_custom_repository()
@@ -52,7 +52,7 @@ class ModelManagerTest extends TestBase
     {
         $repository = $this->sut->getRepository('Database\Tests\Models\Country');
 
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache', $repository);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Repository\Eloquent\Cache', $repository);
     }
 
     public function test_throws_exception_when_custom_repository_is_not_extending_default()
@@ -66,6 +66,6 @@ class ModelManagerTest extends TestBase
     {
         $repository = $this->sut->getAbstractionLayer('Database\Tests\Models\User');
 
-        $this->assertInstanceOf('ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $repository);
+        $this->assertInstanceOf('Ablunier\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $repository);
     }
 }

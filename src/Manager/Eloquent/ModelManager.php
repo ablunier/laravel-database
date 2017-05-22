@@ -1,10 +1,10 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Manager\Eloquent;
+namespace Ablunier\Laravel\Database\Manager\Eloquent;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager as ModelManagerContract;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCustomRepository;
-use ANavallaSuiza\Laravel\Database\Contracts\Repository\HasCache;
-use ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository;
+use Ablunier\Laravel\Database\Contracts\Manager\ModelManager as ModelManagerContract;
+use Ablunier\Laravel\Database\Contracts\Repository\HasCustomRepository;
+use Ablunier\Laravel\Database\Contracts\Repository\HasCache;
+use Ablunier\Laravel\Database\Repository\Eloquent\Repository;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Contracts\Foundation\Application;
 
@@ -56,16 +56,16 @@ class ModelManager implements ModelManagerContract
             $repository = $this->app->make($modelInstance->repository(), $args);
 
             if (! $repository instanceof Repository) {
-                $message = "The [$modelName] custom repository must extend ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository.";
+                $message = "The [$modelName] custom repository must extend Ablunier\Laravel\Database\Repository\Eloquent\Repository.";
 
                 throw new \Exception($message);
             }
         } else {
-            $repository = $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Repository', $args);
+            $repository = $this->app->make('Ablunier\Laravel\Database\Repository\Eloquent\Repository', $args);
         }
 
         if ($modelInstance instanceof HasCache && $modelInstance->cache() === true) {
-            return $this->app->make('ANavallaSuiza\Laravel\Database\Repository\Eloquent\Cache', [
+            return $this->app->make('Ablunier\Laravel\Database\Repository\Eloquent\Cache', [
                 'repository' => $repository,
                 'cache'      => $this->app['cache.store']
             ]);
@@ -83,7 +83,7 @@ class ModelManager implements ModelManagerContract
 
         $args = ['model' => $modelInstance];
 
-        $dbal = $this->app->make('ANavallaSuiza\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $args);
+        $dbal = $this->app->make('Ablunier\Laravel\Database\Dbal\Eloquent\AbstractionLayer', $args);
 
         return $dbal;
     }

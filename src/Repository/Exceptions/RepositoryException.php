@@ -1,5 +1,5 @@
 <?php
-namespace ANavallaSuiza\Laravel\Database\Repository\Exceptions;
+namespace Ablunier\Laravel\Database\Repository\Exceptions;
 
 use Exception;
 
