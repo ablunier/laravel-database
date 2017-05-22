@@ -27,12 +27,12 @@ After updating composer, add the ServiceProvider and Facade (optional) to the ap
 
 'providers' => [
     '...',
-    ANavallaSuiza\Laravel\Database\Manager\ModelManagerServiceProvider::class,
+    Ablunier\Laravel\Database\Manager\ModelManagerServiceProvider::class,
 ];
 
 'aliases' => [
     '...',
-    'ModelManager' => ANavallaSuiza\Laravel\Database\Manager\Facades\ModelManager::class,
+    'ModelManager' => Ablunier\Laravel\Database\Manager\Facades\ModelManager::class,
 ];
 ```
 
@@ -70,7 +70,7 @@ class ExampleController extends Controller
 <?php
 namespace App\Http\Controllers;
 
-use ANavallaSuiza\Laravel\Database\Contracts\Manager\ModelManager;
+use Ablunier\Laravel\Database\Contracts\Manager\ModelManager;
 use View;
 
 class ExampleController extends Controller
