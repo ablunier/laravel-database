@@ -33,7 +33,7 @@ class ModelManager implements ModelManagerContract
      */
     public function getModelInstance($modelName)
     {
-        $modelInstance = $this->app->make($modelName);
+        $modelInstance = new $modelName;
 
         if (!$modelInstance instanceof EloquentModel) {
             $message = "Target [$modelName] is not an Illuminate\Database\Eloquent\Model instance.";
@@ -51,10 +51,9 @@ class ModelManager implements ModelManagerContract
     {
         $modelInstance = $this->getModelInstance($modelName);
 
-        $args = ['model' => $modelInstance];
-
         if ($modelInstance instanceof HasCustomRepository) {
-            $repository = $this->app->make($modelInstance->repository(), $args);
+            $repositoryClass = $modelInstance->repository();
+            $repository = new $repositoryClass($modelInstance);
 
             if (!$repository instanceof Repository) {
                 $message = "The [$modelName] custom repository must extend Ablunier\Laravel\Database\Repository\Eloquent\Repository.";
@@ -62,14 +61,11 @@ class ModelManager implements ModelManagerContract
                 throw new \Exception($message);
             }
         } else {
-            $repository = $this->app->make('Ablunier\Laravel\Database\Repository\Eloquent\Repository', $args);
+            $repository = new \Ablunier\Laravel\Database\Repository\Eloquent\Repository($modelInstance);
         }
 
         if ($modelInstance instanceof HasCache && $modelInstance->cache() === true) {
-            return $this->app->make('Ablunier\Laravel\Database\Repository\Eloquent\Cache', [
-                'repository' => $repository,
-                'cache'      => $this->app['cache.store'],
-            ]);
+            return new \Ablunier\Laravel\Database\Repository\Eloquent\Cache($repository, $this->app['cache.store']);
         }
 
         return $repository;
