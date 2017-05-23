@@ -84,12 +84,14 @@ interface Repository
 
     /**
      * @param array $with
+     *
      * @return mixed
      */
     public function first(array $with = []);
 
     /**
      * @param array $with
+     *
      * @return mixed
      */
     public function firstOrFail(array $with = []);
