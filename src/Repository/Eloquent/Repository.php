@@ -215,6 +215,38 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $with
+     * @return mixed
+     */
+    public function first(array $with = [])
+    {
+        $this->addWithCriteria($with);
+        $this->applyCriteria();
+
+        $result = $this->model->first();
+
+        $this->refresh();
+
+        return $result;
+    }
+
+    /**
+     * @param array $with
+     * @return mixed
+     */
+    public function firstOrFail(array $with = [])
+    {
+        $this->addWithCriteria($with);
+        $this->applyCriteria();
+
+        $result = $this->model->firstOrFail();
+
+        $this->refresh();
+
+        return $result;
+    }
+
+    /**
+     * @param array $with
      *
      * @return void
      */

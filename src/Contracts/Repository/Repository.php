@@ -81,4 +81,16 @@ interface Repository
      * @return mixed
      */
     public function findAllBy($field, $value, array $with = []);
+
+    /**
+     * @param array $with
+     * @return mixed
+     */
+    public function first(array $with = []);
+
+    /**
+     * @param array $with
+     * @return mixed
+     */
+    public function firstOrFail(array $with = []);
 }
