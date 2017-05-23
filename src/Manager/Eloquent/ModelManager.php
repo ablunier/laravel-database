@@ -32,12 +32,14 @@ class ModelManager implements ModelManagerContract
      * Get Eloquent Model instance.
      *
      * @param string $modelName
-     * @return \Illuminate\Database\Eloquent\Model
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function getModelInstance($modelName)
     {
-        $modelInstance = new $modelName;
+        $modelInstance = new $modelName();
 
         if (!$modelInstance instanceof EloquentModel) {
             $message = "Target [$modelName] is not an Illuminate\Database\Eloquent\Model instance.";

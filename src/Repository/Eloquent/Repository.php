@@ -215,6 +215,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $with
+     *
      * @return mixed
      */
     public function first(array $with = [])
@@ -231,6 +232,7 @@ class Repository implements RepositoryContract, CriteriaPerformer
 
     /**
      * @param array $with
+     *
      * @return mixed
      */
     public function firstOrFail(array $with = [])
